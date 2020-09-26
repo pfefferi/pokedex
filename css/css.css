@@ -1,0 +1,34 @@
+@import 'https://fonts.googleapis.com/css?family=Roboto:300,400,500';
+
+body {
+    background-color: #f0ece3;
+    text-align: center;
+    padding: auto;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    color: #3b5766;
+}
+
+.hidden {
+    display: none;
+}
+
+.container {
+    margin: 2% 15%;
+    background-color: #dfd3c3;
+    border: soliid 5em #3b5766;
+    border-radius: 15px;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 1em;
+    row-gap: 1em;
+}
+
+.pokemon {
+    margin: auto;
+    padding: 15px;
+    background-color: #c7b198;
+    border-radius: 10px;
+    font-size: 1em;
+    letter-spacing: 0.1em;
+}
