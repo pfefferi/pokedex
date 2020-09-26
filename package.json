@@ -1,0 +1,22 @@
+{
+  "name": "pokedex",
+  "version": "1.0.0",
+  "description": "Uses PokeAPI to create an interactive pokédex",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pfefferi/pokedex.git"
+  },
+  "author": "Lisandro Scarrone",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pfefferi/pokedex/issues"
+  },
+  "homepage": "https://github.com/pfefferi/pokedex#readme",
+  "dependencies": {
+    "jquery": "^3.5.1"
+  }
+}
