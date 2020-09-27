@@ -6,6 +6,7 @@ body {
     padding: auto;
     font-family: Roboto, Helvetica, Arial, sans-serif;
     color: #3b5766;
+    margin: auto;
 }
 
 .hidden {
@@ -87,6 +88,22 @@ body {
     font-weight: 800;
 }
 
+.loading {
+    color: #978064;
+    padding: 50px auto;
+    font-size: 5em;
+    font-weight: 1500;
+    text-shadow: #3a3127 0px 0px 2px, #3a3127 0px 0px 2px, #3a3127 0px 0px 2px,
+        #3a3127 0px 0px 2px, #3a3127 0px 0px 2px, #3a3127 0px 0px 2px;
+    -webkit-font-smoothing: antialiased;
+}
+
+.loading-image {
+    border: 10px solid #af9576;
+    border-radius: 4px;
+    padding: auto;
+    margin: 50px auto;
+}
 /*/////////////////// types ///////////////////*/
 
 .poison {
@@ -94,18 +111,18 @@ body {
 }
 
 .grass {
-    background-color: #32d432;
+    background-color: #55c532;
 }
 
 .fire {
-    background-color: #ff0800;
+    background-color: #ff4800;
 }
 
 .water {
-    background-color: #006eff;
+    background-color: #1d7fff;
 }
 .ice {
-    background-color: #42c9e0;
+    background-color: #54d0e6;
 }
 .flying {
     background-color: #7ba6cf;
@@ -120,7 +137,7 @@ body {
     background-color: #fffb00;
 }
 .ground {
-    background-color: #a87f25;
+    background-color: #b18b3a;
 }
 .fairy {
     background-color: #ffb3fb;

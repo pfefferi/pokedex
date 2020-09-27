@@ -77,6 +77,7 @@ function hideType2(id, type2) {
 
 function pokemonArray() {
     sortArray(cardsArray);
+    $('.loading').addClass('hidden');
     showCards(cardsArray);
     cardsArray = [];
 }
@@ -107,6 +108,7 @@ function loadFirstPokemon() {
 }
 
 window.onload = () => {
+    $('.loading').removeClass('hidden');
     loadFirstPokemon();
     setTimeout(pokemonArray, 3000);
 };
