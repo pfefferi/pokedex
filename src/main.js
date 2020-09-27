@@ -1,3 +1,5 @@
+let cardsArray = [];
+
 function getPokemon(pokemonID) {
     $.ajax({
         method: 'GET',
@@ -13,7 +15,7 @@ function createCard(pokemon) {
 }
 
 function getInfo(pokemon) {
-    const id = pokemon['id'];
+    let id = pokemon['id'];
     const name = pokemon['species']['name'];
     // const height = pokemon['height'];
     // const weight = pokemon['weight'];
@@ -22,19 +24,17 @@ function getInfo(pokemon) {
     if (pokemon['types']['1']) {
         type2 = pokemon['types']['1']['type']['name'];
     }
-    let imageID = '';
     if (id < 10) {
-        imageID = `00${id}`;
+        id = `00${id}`;
     } else if (id < 100) {
-        imageID = `0${id}`;
+        id = `0${id}`;
     } else {
-        imageID = id;
     }
 
     const card = `
         <div class="card" id="${id}">
             <img
-            src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/${imageID}.png"
+            src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/${id}.png"
             alt=""
             style="width: 200px; height: 200px"
             />
@@ -56,15 +56,17 @@ function getInfo(pokemon) {
     const cardObject = {
         cardID: id,
         cardHTML: card,
+        type2: type2,
     };
-    showCard(cardObject);
-    hideType2(id, type2);
-    return cardObject;
+    cardsArray.push(cardObject);
 }
 
 function showCard(cardObject) {
     const $container = $('.container');
     $container.append(cardObject['cardHTML']);
+    if (!cardObject['type2']) {
+        $(`#${cardObject['cardID']}-type`).addClass('hidden');
+    }
 }
 
 function hideType2(id, type2) {
@@ -73,7 +75,38 @@ function hideType2(id, type2) {
     }
 }
 
-[...Array(9).keys()].forEach((key) => {
-    pokemonID = key + 1;
-    getPokemon(pokemonID);
-});
+function pokemonArray() {
+    sortArray(cardsArray);
+    showCards(cardsArray);
+    cardsArray = [];
+}
+
+function sortArray(array) {
+    array.sort((first, second) => {
+        const firstID = first['cardID'];
+        const secondID = second['cardID'];
+        if (firstID < secondID) return -1;
+        if (firstID > secondID) return 1;
+        return 0;
+    });
+}
+
+function showCards(array) {
+    array.forEach((card) => {
+        showCard(card);
+    });
+}
+
+///////////////////////////////////////////////////////////////////////////////////
+
+function loadFirstPokemon() {
+    [...Array(12).keys()].forEach((key) => {
+        pokemonID = key + 1;
+        getPokemon(pokemonID);
+    });
+}
+
+window.onload = () => {
+    loadFirstPokemon();
+    setTimeout(pokemonArray, 3000);
+};
