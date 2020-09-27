@@ -1,4 +1,5 @@
 let cardsArray = [];
+let currentLast = 12;
 
 function getPokemon(pokemonID) {
     $.ajax({
@@ -75,13 +76,6 @@ function hideType2(id, type2) {
     }
 }
 
-function pokemonArray() {
-    sortArray(cardsArray);
-    $('.loading').addClass('hidden');
-    showCards(cardsArray);
-    cardsArray = [];
-}
-
 function sortArray(array) {
     array.sort((first, second) => {
         const firstID = first['cardID'];
@@ -98,6 +92,20 @@ function showCards(array) {
     });
 }
 
+function createArray(start, end) {
+    return Array(end - start + 1)
+        .fill()
+        .map((_, i) => start + i);
+}
+
+const $button = $('.button');
+$button.on('click', () => {
+    sortArray(cardsArray);
+    showCards(cardsArray);
+    cardsArray = [];
+    loadRemainingPokemon();
+});
+
 ///////////////////////////////////////////////////////////////////////////////////
 
 function loadFirstPokemon() {
@@ -107,8 +115,27 @@ function loadFirstPokemon() {
     });
 }
 
+function loadRemainingPokemon() {
+    let currentArray = createArray(currentLast + 1, currentLast + 12);
+    currentArray.forEach((key) => {
+        pokemonID = key + 1;
+        getPokemon(pokemonID);
+    });
+    currentLast = currentLast + 12;
+    // setTimeout(pokemonArray, 3000);
+}
+
 window.onload = () => {
     $('.loading').removeClass('hidden');
     loadFirstPokemon();
-    setTimeout(pokemonArray, 3000);
+    setTimeout(() => {
+        $('.loading').addClass('hidden');
+        sortArray(cardsArray);
+        showCards(cardsArray);
+        cardsArray = [];
+        loadRemainingPokemon();
+    }, 3000);
+    setTimeout(() => {
+        $button.removeClass('hidden');
+    }, 3100);
 };

@@ -76,7 +76,7 @@ body {
     border: 2px solid #242424;
     border-radius: 2em;
     padding: 2px 5px;
-    width: 40px;
+    width: 45px;
     height: 10px;
 }
 .card:hover {
@@ -104,6 +104,34 @@ body {
     padding: auto;
     margin: 50px auto;
 }
+
+.button {
+    margin: auto;
+    margin-bottom: 50px;
+    border: 2px solid #3a3127;
+    border-radius: 2em;
+    color: #3a3127;
+    font-size: 0.8em;
+    letter-spacing: 0.1em;
+    padding: 1em 2em;
+    transition: none 500ms ease-out;
+    transition-property: color, background;
+    background: #dbc3a8;
+    width: 100px;
+    font-weight: 500;
+}
+
+.button:hover {
+    border: 2px solid #3a3127;
+    background: #b18b5e;
+    color: #3a3127;
+    opacity: 1;
+}
+
+.button:focus {
+    outline: 0 !important;
+}
+
 /*/////////////////// types ///////////////////*/
 
 .poison {
@@ -111,7 +139,7 @@ body {
 }
 
 .grass {
-    background-color: #55c532;
+    background-color: #5fb42e;
 }
 
 .fire {
@@ -131,7 +159,7 @@ body {
     background-color: #b6d432;
 }
 .normal {
-    background-color: #fffadf;
+    background-color: #fff6c2;
 }
 .electric {
     background-color: #fffb00;
@@ -146,7 +174,7 @@ body {
     background-color: #9b4600;
 }
 .psychic {
-    background-color: #ff00aa;
+    background-color: #da63a4;
 }
 .rock {
     background-color: #996300;
@@ -161,5 +189,5 @@ body {
     background-color: #5800cc;
 }
 .dark {
-    background-color: #141414;
+    background-color: #352721;
 }
