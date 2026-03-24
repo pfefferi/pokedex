@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orbital Pokedex v2.1</title>
+    <link rel="stylesheet" href="css/css.css" />
+</head>
+
+<body>
+    <div class="crt-overlay"></div>
+
+    <header>
+        <div class="header-left">
+            <h1>Pokedex v2.1</h1>
+            <button id="toggle-game" class="game-toggle-btn">Start Game Mode</button>
+        </div>
+        <div class="theme-selector">
+            <div class="theme-dot cyber active" data-theme="cyber-cyan" title="Cyber Cyan"></div>
+            <div class="theme-dot rocket" data-theme="rocket-red" title="Rocket Red"></div>
+            <div class="theme-dot leaf" data-theme="leaf-green" title="Leaf Green"></div>
+            <div class="theme-dot electric" data-theme="electric-yellow" title="Electric Yellow"></div>
+        </div>
+    </header>
+
+    <div id="game-overlay" class="game-overlay hidden">
+        <div class="game-content">
+            <div class="game-header">
+                <h2>Who's That Pokemon?</h2>
+                <div class="streak-counter">Streak: <span id="streak-val">0</span></div>
+            </div>
+            <div class="silhouette-container">
+                <img id="game-pokemon-img" src="" alt="Silhouette">
+                <div class="reveal-flash"></div>
+            </div>
+            <div class="game-controls">
+                <input type="text" id="guess-input" placeholder="Enter Pokemon Name..." autocomplete="off">
+                <div class="game-buttons">
+                    <button id="submit-guess">Guess</button>
+                    <button id="skip-round">Skip</button>
+                    <button id="exit-game">Exit</button>
+                </div>
+            </div>
+            <div id="game-feedback" class="game-feedback"></div>
+        </div>
+    </div>
+
+    <div class="search-container">
+        <input type="text" id="pokemon-search" placeholder="Search for Pokemon by name or ID..." spellcheck="false">
+        <button id="toggle-filter" class="toggle-button">Advanced Filters</button>
+    </div>
+
+    <div class="filter-hud">
+        <!-- Dynamically populated -->
+    </div>
+
+    <div class="loading hidden">
+        <span>Loading...</span>
+    </div>
+
+    <main class="container">
+        <!-- Pokemon cards will be injected here -->
+    </main>
+
+    <!-- Orchestrator -->
+    <script type="module" src="src/main.js"></script>
+</body>
+
+</html>
