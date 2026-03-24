@@ -22,6 +22,9 @@ let isFilterMode = false;
 
 // Search & Filter State
 let pokemonIndex = [];
+let currentFilteredList = [];
+let filterOffset = 0;
+const FILTER_LIMIT = 48;
 let filterMaps = {
     types: {},
     generations: {},
@@ -376,14 +379,29 @@ async function applyFilters() {
         return valB - valA;
     });
 
-    const results = filteredList.slice(0, 48);
+    currentFilteredList = filteredList;
+    filterOffset = 0;
+    container.innerHTML = '';
+    
+    await loadMoreFiltered();
+}
+
+async function loadMoreFiltered() {
+    if (isLoading) return;
+    isLoading = true;
+    toggleLoading(true);
+
+    const results = currentFilteredList.slice(filterOffset, filterOffset + FILTER_LIMIT);
     if (results.length > 0) {
         const pokemonData = await Promise.all(results.map(p => getPokemon(p.id)));
-        renderPokemon(container, pokemonData.filter(Boolean), handleCardClick, false);
-    } else {
+        // Append results
+        renderPokemon(container, pokemonData.filter(Boolean), handleCardClick, true);
+        filterOffset += FILTER_LIMIT;
+    } else if (filterOffset === 0) {
         container.innerHTML = `<div class="info-message">No results found matching your criteria.</div>`;
     }
 
+    isLoading = false;
     toggleLoading(false);
 }
 
@@ -425,8 +443,12 @@ const setupInfiniteScroll = () => {
     document.body.appendChild(sentinel);
 
     const observer = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && !isLoading && !isFilterMode) {
-            loadMore();
+        if (entries[0].isIntersecting && !isLoading) {
+            if (isFilterMode) {
+                loadMoreFiltered();
+            } else {
+                loadMore();
+            }
         }
     }, {
         rootMargin: '400px'
